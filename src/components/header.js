@@ -1,6 +1,8 @@
+'use strict'
+
 import React from 'react';
 
-const Header = () => (
+const Header = ({ handleSearch }) => (
     <div className="header">
         <div className="container">
             <a href="https://github.com/" target="_blank" className="git-link">
@@ -13,7 +15,13 @@ const Header = () => (
             </a>
             <h1 className="titulo-app">Api basica de busca de usuários no GitHub</h1>
             <div className="form">
-                <input type="search" name="search" className="search" placeholder="Digite o nome do usuário no GitHub" />
+                <input 
+                type="search" 
+                name="search" 
+                className="search" 
+                placeholder="Digite o nome do usuário no GitHub" 
+                onKeyUp={handleSearch}
+            />
             </div>
         </div>
     </div>
