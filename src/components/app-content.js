@@ -4,9 +4,13 @@ import React from 'react';
 import UserInfo from './user-info'
 import Actions from './actions'
 import Repos from './repos'
+import LoadingGif from '../imgs/loading.gif'
 
 const AppContent = ({
     user,
+    userShow,
+    loading,
+    error,
     repos, 
     starred,
     getRepos, 
@@ -14,8 +18,21 @@ const AppContent = ({
 }) => {
     return (
         <div className="container">
-            <UserInfo user={user} />
-            <Actions  getRepos={getRepos} getStarred={getStarred} />        
+            
+            {loading && <img src={LoadingGif} alt="loading..." className="loading" /> }
+            
+            {error && 
+                <div className="error"> 
+                    <p>Nenhum usuários encontrado</p>
+                </div> }
+
+            {!!userShow &&
+                <UserInfo user={user} />
+            }
+            {!!userShow &&
+                <Actions getRepos={getRepos} getStarred={getStarred}  />        
+            }
+
             <div className="row">   
                 {!!repos.length &&            
                     <Repos 
@@ -32,6 +49,7 @@ const AppContent = ({
                     />
                 }
             </div>
+            
         </div>
     )
 }
