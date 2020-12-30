@@ -2,7 +2,7 @@
 
 import { hot } from 'react-hot-loader/root'
 import axios from 'axios'
-import React, { useState, useEffect, useRef } from 'react'
+import React, { useState } from 'react'
 import AppContent from './components/app-content'
 import Header from './components/header'
 
@@ -15,28 +15,17 @@ const App = () => {
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState(false)
   
-  /*
-  https://api.github.com/users/Tuhh16
-  let getGit = getGitHubApiUrl (username, type) {
+  function getGitHubApiUrl (username, type) {
     const internalUser = username ? `/${username}` : ''
     const internalType = type ? `/${type}` : ''
     return `https://api.github.com/users${internalUser}${internalType}`
   }
-  */
-
-  function WaitTowSeconds(x) {
-    return new Promise(resolve => {
-      setTimeout(() => {
-        resolve(axios.get(x))
-      }, 2000)
-    })
-  }
-  
+ 
   async function handleSearch (e) { 
     let value = e.target.value
     const keyCode = e.which || e.keyCode
     const ENTER = 13
-    if (keyCode === ENTER) {
+    if (keyCode === ENTER && value != '') {
         setLoading(true)
         setError(false)
         setUserShow(false)
@@ -44,7 +33,7 @@ const App = () => {
         setRepos([])
         setStarred([])
         try {
-          const result = await axios.get(`https://api.github.com/users/${value}`);    
+          const result = await axios.get(getGitHubApiUrl(value));    
           const user = await result.data
           setLoading(false)
           setUser({
@@ -65,14 +54,13 @@ const App = () => {
           console.error(error);
         }
     }
-
   }
-
+  
   async function getRepos (type) {
       const username = user.login
       const Type = type == 'repos' ? setRepos : setStarred
       
-      const result = await axios.get(`https://api.github.com/users/${username}/${type}`);
+      const result = await axios.get(getGitHubApiUrl(username, type));
       const resultFilter = result.data
       
       Type(
@@ -85,7 +73,7 @@ const App = () => {
 
   return (
     <div>
-      <Header handleSearch={handleSearch} />
+      <Header handleSearch={handleSearch} loading={loading} />
       <AppContent 
         user={user}
         userShow={userShow}

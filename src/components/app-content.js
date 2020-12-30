@@ -1,6 +1,7 @@
 'use strict'
 
-import React from 'react';
+import React from 'react'
+import PropTypes from 'prop-types'
 import UserInfo from './user-info'
 import Actions from './actions'
 import Repos from './repos'
@@ -53,5 +54,15 @@ const AppContent = ({
         </div>
     )
 }
-  
-  export default AppContent
+
+AppContent.propTypes = {
+    userinfo: PropTypes.object,
+    repos: PropTypes.array.isRequired,
+    starred: PropTypes.array.isRequired,
+    loading: PropTypes.bool.isRequired,
+    error: PropTypes.bool.isRequired,
+    getRepos: PropTypes.func.isRequired, 
+    getStarred: PropTypes.func.isRequired 
+}
+
+export default AppContent
