@@ -2,13 +2,13 @@
 
 import React, { createContext } from 'react'
 
-import useGit from './hooks/useGit'
+import userGit from './hooks/userGit'
 
 const Context = createContext()
 
 const GitHubSearch = ({ children }) => {
 
-   const { user, repos, starred, userShow, loading, error, getGitHubApiUrl, handleSearch, getRepos } = useGit()
+   const { user, repos, starred, userShow, loading, error, getGitHubApiUrl, handleSearch, getRepos } = userGit()
 
     return (
         <Context.Provider
