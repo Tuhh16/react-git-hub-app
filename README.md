@@ -1,6 +1,6 @@
-# React Webpack
+# React GitHub APP
 
-Configuração padrão para desenvolver aplicações em React.
+Nessa aplicação uso a api do github para fazer busca de usuario e listagem dos repositórios pessoais e favoritados por ele.
 
 ## Instalação
 
