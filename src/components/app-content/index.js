@@ -4,7 +4,7 @@ import React, { useContext } from 'react'
 import UserInfo from '../user-info/'
 import Actions from '../actions/'
 import Repos from '../repos/'
-import LoadingGif from '../../imgs/loading.gif'
+import LoadingGif from '../../assets/imgs/loading.gif'
 import { Context } from '../../context/gitHubSearch'
 
 const AppContent = () => {
