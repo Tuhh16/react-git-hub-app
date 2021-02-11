@@ -1,22 +1,23 @@
 'use strict'
 
-import React from 'react'
-import PropTypes from 'prop-types'
-import UserInfo from './user-info'
-import Actions from './actions'
-import Repos from './repos'
-import LoadingGif from '../imgs/loading.gif'
+import React, { useContext } from 'react'
+import UserInfo from '../user-info/'
+import Actions from '../actions/'
+import Repos from '../repos/'
+import LoadingGif from '../../imgs/loading.gif'
+import { Context } from '../../context/gitHubSearch'
 
-const AppContent = ({
-    user,
-    userShow,
-    loading,
-    error,
-    repos, 
-    starred,
-    getRepos, 
-    getStarred 
-}) => {
+const AppContent = () => {
+
+    const {
+        user,
+        userShow,
+        loading,
+        error,
+        repos, 
+        starred
+    } = useContext(Context)
+
     return (
         <div className="container">
             
@@ -30,8 +31,10 @@ const AppContent = ({
             {!!userShow &&
                 <UserInfo user={user} />
             }
+             
             {!!userShow &&
-                <Actions getRepos={getRepos} getStarred={getStarred}  />        
+            
+                <Actions />        
             }
 
             <div className="row">   
@@ -53,16 +56,6 @@ const AppContent = ({
             
         </div>
     )
-}
-
-AppContent.propTypes = {
-    userinfo: PropTypes.object,
-    repos: PropTypes.array.isRequired,
-    starred: PropTypes.array.isRequired,
-    loading: PropTypes.bool.isRequired,
-    error: PropTypes.bool.isRequired,
-    getRepos: PropTypes.func.isRequired, 
-    getStarred: PropTypes.func.isRequired 
 }
 
 export default AppContent

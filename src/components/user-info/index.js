@@ -1,9 +1,11 @@
 'use strict'
 
-import React from 'react';
+import React, { useContext } from 'react';
+import { Context } from '../../context/gitHubSearch'
 
-const UserInfo = (user) => {
-    let userinfo = user.user
+const UserInfo = () => {
+    const { user } = useContext(Context)
+    let userinfo = user
     return (
         <div className="perfil">
             <div className="imagem-perfil">

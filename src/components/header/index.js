@@ -1,9 +1,13 @@
 'use strict'
 
-import React from 'react'
-import PropTypes from 'prop-types'
+import React, { useContext } from 'react'
 
-const Header = ({ handleSearch, loading }) => {
+import { Context } from '../../context/gitHubSearch'
+
+const Header = () => {
+
+    const { handleSearch, loading } = useContext(Context)
+
     return (
         <div className="header">
             <div className="container">
@@ -29,11 +33,6 @@ const Header = ({ handleSearch, loading }) => {
             </div>
         </div>
     )
-}
-
-Header.propTypes = {
-    handleSearch: PropTypes.func.isRequired,
-    loading: PropTypes.bool.isRequired
 }
 
 export default Header
