@@ -7,8 +7,6 @@ import Header from './components/header/'
 import { GitHubSearch } from './context/gitHubSearch'
 
 const App = () => {
-  
-
   return (
     <div>
       <GitHubSearch>
@@ -17,7 +15,6 @@ const App = () => {
       </GitHubSearch>
     </div>
   )
-
 }
 
 export default hot(App)
